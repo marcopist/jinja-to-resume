@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=42", "wheel", "build"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "jinja-to-resume"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Get a Jinja template and a JSON file and generate a PDF resume"
 readme = "README.md"
 requires-python = ">=3.6"
@@ -35,6 +35,9 @@ dependencies = [
     "addict"
 ]
 
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+
 [project.scripts]
 jinja2resume = "jinja_to_resume.__main__:main"
 
@@ -43,19 +46,3 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.bump2version]
-current_version = "0.1.0"
-commit = true
-tag = true
-
-[tool.bump2version.files]
-"pyproject.toml" = """
-version = "{current_version}"
-replace = "{new_version}"
-"""
-
-"setup.cfg" = """
-version = {current_version}
-replace = {new_version}
-"""
