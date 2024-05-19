@@ -26,13 +26,12 @@ jobs:
     - name: Bump version and create tag
       id: bump_version
       run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
         bump2version minor --allow-dirty
         git push --follow-tags
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GIT_AUTHOR_NAME: GitHub Action
-        GIT_AUTHOR_EMAIL: action@github.com
-
     - name: Build package
       run: python -m build
 
