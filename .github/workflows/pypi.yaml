@@ -27,8 +27,8 @@ jobs:
       id: bump_version
       run: |
         bump2version minor --allow-dirty
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
+        git config user.email "action@github.com"
+        git config "GitHub Action"
         git push --follow-tags
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
